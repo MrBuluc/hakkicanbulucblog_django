@@ -5,3 +5,6 @@ from django.shortcuts import render, HttpResponse
 
 def index(request):
     return render(request=request, template_name="index.html")
+
+def about(request):
+    return render(request=request, template_name="about.html")
