@@ -35,3 +35,11 @@ def addProject(request):
         "form": form
     }
     return render(request=request, template_name="addproject.html", context=context)
+
+
+def detail(request, id):
+    project = Project.objects.filter(id=id).first()
+    context = {
+        "project": project
+    }
+    return render(request=request, template_name="detail.html", context=context)
