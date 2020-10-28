@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import ProjectForm
 from django.contrib import messages
 from .models import Project
@@ -38,7 +38,7 @@ def addProject(request):
 
 
 def detail(request, id):
-    project = Project.objects.filter(id=id).first()
+    project = get_object_or_404(Project, id=id)
     context = {
         "project": project
     }
