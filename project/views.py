@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import ProjectForm
 from django.contrib import messages
+from .models import Project
 # Create your views here.
 
 
@@ -13,7 +14,11 @@ def about(request):
 
 
 def dashboard(request):
-    return render(request=request, template_name="dashboard.html")
+    projects = Project.objects.filter(author=request.user)
+    context = {
+        "projects": projects
+    }
+    return render(request=request, template_name="dashboard.html", context=context)
 
 
 def addProject(request):
