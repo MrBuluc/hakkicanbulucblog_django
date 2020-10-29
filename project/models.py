@@ -23,7 +23,7 @@ class Comment(models.Model):
         to=Project, on_delete=models.CASCADE, verbose_name="Proje", related_name="comments")
     comment_author = models.CharField(max_length=50, verbose_name="İsim")
     comment_content = models.CharField(max_length=200, verbose_name="Yorum")
-    domment_date = models.DateTimeField(auto_now_add=True)
+    comment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.comment_content

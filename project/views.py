@@ -42,8 +42,11 @@ def addProject(request):
 
 def detail(request, id):
     project = get_object_or_404(Project, id=id)
+
+    comments = project.comments.all()
     context = {
-        "project": project
+        "project": project,
+        "comments": comments
     }
     return render(request=request, template_name="detail.html", context=context)
 

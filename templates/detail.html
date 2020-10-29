@@ -24,6 +24,27 @@
             {{project.content | safe}}
         </p>
         <hr>
+        <h4>Yorumlar</h4>
+        <hr>
+        {% if comments %}
+        {% for comment in comments %}
+        <!-- Single Comment -->
+        <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="https://i.ebayimg.com/images/g/Qu8AAOSwpOVdeQWL/s-l64.jpg" alt="">
+            <div class="media-body">
+                <h5 class="mt-0">{{comment.comment_author}}</h5>
+                {{comment.comment_date}}
+                <br>
+                {{comment.comment_content}}
+            </div>
+        </div>
+        {% endfor %}
+        
+        {% else %}
+        <div class="alert alert-danger">
+            Bu Projede herhangi bir yorum yazılmamış, ilk yorum yapan siz olun!!!
+        </div>
+        {% endif %}
         <!-- Comments Form -->
         <div class="card my-4">
             <h5 class="card-header">Yorum Ekle:</h5>
