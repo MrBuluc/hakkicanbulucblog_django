@@ -1,7 +1,7 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse
 from .forms import ProjectForm
 from django.contrib import messages
-from .models import Project
+from .models import Project, Comment
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -97,4 +97,17 @@ def projects(request):
 
 
 def addComment(request, id):
-    pass
+    project = get_object_or_404(Project, id=id)
+
+    if request.method == "POST":
+        comment_author = request.POST.get("comment_author")
+        comment_content = request.POST.get("comment_content")
+
+        newComment = Comment(comment_author=comment_author,
+                             comment_content=comment_content)
+
+        newComment.project = project
+
+        newComment.save()
+
+    return redirect(reverse(viewname="project:detail", kwargs={"id": id}))
