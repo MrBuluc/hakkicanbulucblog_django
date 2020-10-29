@@ -15,11 +15,13 @@
         <p>{{project.created_date}}</p>
         <hr>
         <!-- Preview Image -->
-        <!-- <img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""> -->
+        {% if project.project_image %}
+        <img class="img-fluid rounded" src="{{project.project_image.url}}" alt="">
         <hr>
+        {% endif %}
         <!-- Post Content -->
         <p class="lead">
-            {{project.content}}
+            {{project.content | safe}}
         </p>
         <hr>
     </div>

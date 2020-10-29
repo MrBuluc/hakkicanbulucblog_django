@@ -11,7 +11,8 @@ class Project(models.Model):
     content = RichTextField()
     created_date = models.DateTimeField(
         auto_now_add=True, verbose_name="Oluşturulma Tarihi")
+    project_image = models.FileField(
+        blank=True, null=True, verbose_name="Projeye Fotoğraf Ekle")
 
     def __str__(self):
         return self.title
-

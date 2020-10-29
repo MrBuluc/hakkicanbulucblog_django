@@ -22,7 +22,7 @@ def dashboard(request):
 
 
 def addProject(request):
-    form = ProjectForm(request.POST or None)
+    form = ProjectForm(request.POST or None, files=request.FILES or None)
     if form.is_valid():
         project = form.save(commit=False)
 
@@ -30,7 +30,7 @@ def addProject(request):
         project.save()
         messages.success(
             request=request, message="Proje başarıyla oluşturuldu...")
-        return render(request=request, template_name="dashboard.html")
+        return redirect("project:dashboard")
     context = {
         "form": form
     }
