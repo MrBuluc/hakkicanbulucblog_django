@@ -77,3 +77,11 @@ def deleteProject(request, id):
     messages.success(request=request, message="Proje Başarıyla Silindi")
 
     return redirect("project:dashboard")
+
+def projects(request):
+    projects = Project.objects.all()
+
+    context = {
+        "projects":projects
+    }
+    return render(request=request, template_name="projects.html", context=context)

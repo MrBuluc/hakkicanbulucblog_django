@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-7 offset-md-3">
+        <h1>Projeler</h1>
+        <hr>
+    </div>
+</div>
+{% if projects %}
+{% for project in projects %}
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+            <!-- Title -->
+            <a href="/projects/project/{{project.id}}">
+                <h3 class="mt-4">{{project.title}}</h3>
+            </a>
+            <!-- Author -->
+            <p class="lead">
+                {{project.author.username}} tarafından yayınlandı
+            </p>
+            <hr>
+            <!-- Date/Time -->
+            <p>{{project.created_date}}</p>
+            <hr>
+            <!-- Preview Image -->
+            {% if project.project_image %}
+            <a href="/projects/project/{{project.id}}">
+                <img class="img-fluid rounded" src="{{project.project_image.url}}" alt="">
+            </a>
+            <hr>
+            {% endif %}
+            <!-- Post Content -->
+            <p class="lead">
+                {{project.content | safe}}
+            </p>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="alert alert-danger">
+    Bu blogta herhangi bir proje bulunmuyor...
+</div>
+{% endif %}
+{% endblock %}
