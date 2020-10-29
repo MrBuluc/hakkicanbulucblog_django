@@ -43,3 +43,22 @@ def detail(request, id):
         "project": project
     }
     return render(request=request, template_name="detail.html", context=context)
+
+
+def updateProject(request, id):
+    project = get_object_or_404(Project, id=id)
+    form = ProjectForm(data=request.POST or None,
+                       files=request.FILES or None, instance=project)
+    if form.is_valid():
+        project = form.save(commit=False)
+
+        project.author = request.user
+        project.save()
+
+        messages.success(
+            request=request, message="Proje başarıyla güncellendi...")
+        return redirect("project:dashboard")
+    context = {
+        "form": form
+    }
+    return render(request=request, template_name="update.html", context=context)
