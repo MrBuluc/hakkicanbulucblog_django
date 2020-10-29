@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import ProjectForm
 from django.contrib import messages
 from .models import Project
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -13,6 +14,7 @@ def about(request):
     return render(request=request, template_name="about.html")
 
 
+@login_required(login_url="user:login")
 def dashboard(request):
     projects = Project.objects.filter(author=request.user)
     context = {
@@ -21,6 +23,7 @@ def dashboard(request):
     return render(request=request, template_name="dashboard.html", context=context)
 
 
+@login_required(login_url="user:login")
 def addProject(request):
     form = ProjectForm(request.POST or None, files=request.FILES or None)
     if form.is_valid():
@@ -45,6 +48,7 @@ def detail(request, id):
     return render(request=request, template_name="detail.html", context=context)
 
 
+@login_required(login_url="user:login")
 def updateProject(request, id):
     project = get_object_or_404(Project, id=id)
     form = ProjectForm(data=request.POST or None,
@@ -64,6 +68,7 @@ def updateProject(request, id):
     return render(request=request, template_name="update.html", context=context)
 
 
+@login_required(login_url="user:login")
 def deleteProject(request, id):
     project = get_object_or_404(Project, id=id)
 
