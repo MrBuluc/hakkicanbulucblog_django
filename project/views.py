@@ -94,3 +94,7 @@ def projects(request):
         "projects": projects
     }
     return render(request=request, template_name="projects.html", context=context)
+
+
+def addComment(request, id):
+    pass

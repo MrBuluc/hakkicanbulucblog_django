@@ -24,6 +24,29 @@
             {{project.content | safe}}
         </p>
         <hr>
+        <!-- Comments Form -->
+        <div class="card my-4">
+            <h5 class="card-header">Yorum Ekle:</h5>
+            <div class="card-body">
+                <form action="{% url 'project:comment' project.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">İsim</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="formGroupExampleInput"
+                            placeholder="İsminizi Giriniz..."
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Yorum</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Gönder</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

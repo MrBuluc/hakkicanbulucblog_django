@@ -12,5 +12,7 @@ urlpatterns = [
     path('update/<int:id>', views.updateProject, name="update"),
     path('delete/<int:id>', views.deleteProject, name="delete"),
     path('', views.projects, name="projects"),
+    path('comment/<int:id>', views.addComment, name="comment"),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
