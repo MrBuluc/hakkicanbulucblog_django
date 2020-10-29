@@ -2,9 +2,28 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-md-7 offset-md-3">
-        <h1>Projeler</h1>
-        <hr>
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <h1>Projeler</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <form>
+                {% csrf_token %}
+                <input
+                    type="text"
+                    name="keyword"
+                    class="input-sm"
+                    maxlength="64"
+                    placeholder="Ara..."
+                >
+                <button type="submit" class="btn btn-success">Ara</button>
+            </form>
+        </div>
     </div>
 </div>
 {% if projects %}
@@ -43,8 +62,15 @@
 </div>
 {% endfor %}
 {% else %}
-<div class="alert alert-danger">
-    Bu blogta herhangi bir proje bulunmuyor...
+<p></p>
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <div class="alert alert-danger">
+                Proje bulunmuyor...
+            </div>
+        </div>
+    </div>
 </div>
 {% endif %}
 {% endblock %}

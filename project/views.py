@@ -78,10 +78,19 @@ def deleteProject(request, id):
 
     return redirect("project:dashboard")
 
+
 def projects(request):
+    keyword = request.GET.get("keyword")
+
+    if keyword:
+        projects = Project.objects.filter(title__contains=keyword)
+        context = {
+            "projects": projects
+        }
+        return render(request=request, template_name="projects.html", context=context)
     projects = Project.objects.all()
 
     context = {
-        "projects":projects
+        "projects": projects
     }
     return render(request=request, template_name="projects.html", context=context)
