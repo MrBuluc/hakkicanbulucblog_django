@@ -62,3 +62,13 @@ def updateProject(request, id):
         "form": form
     }
     return render(request=request, template_name="update.html", context=context)
+
+
+def deleteProject(request, id):
+    project = get_object_or_404(Project, id=id)
+
+    project.delete()
+
+    messages.success(request=request, message="Proje Başarıyla Silindi")
+
+    return redirect("project:dashboard")
