@@ -33,7 +33,7 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
             <!-- Title -->
-            <a href="/projects/project/{{project.id}}">
+            <a href="{% url 'project:detail' project.id %}">
                 <h3 class="mt-4">{{project.title}}</h3>
             </a>
             <!-- Author -->
@@ -46,7 +46,7 @@
             <hr>
             <!-- Preview Image -->
             {% if project.project_image %}
-            <a href="/projects/project/{{project.id}}">
+            <a href="{% url 'project:detail' project.id %}">
                 <img class="img-fluid rounded" src="{{project.project_image.url}}" alt="">
             </a>
             <hr>
@@ -55,7 +55,7 @@
             <p class="lead">
                 {{project.content | safe | truncatewords:50 }}
             </p>
-            <a href="/projects/project/{{project.id}}" class="btn btn-success">Devamını Oku</a>
+            <a href="{% url 'project:detail' project.id %}" class="btn btn-success">Devamını Oku</a>
             <hr>
         </div>
     </div>

@@ -7,7 +7,7 @@
     <big>Hoşgeldiniz, {{request.user.username}}</big>
 </p>
 <hr>
-<a class="btn btn-success" href="/projects/addproject">Proje Ekle</a>
+<a class="btn btn-success" href="{% url 'project:addproject' %}">Proje Ekle</a>
 <h1></h1>
 <h2></h2>
 {% if projects %}
@@ -27,15 +27,15 @@
         <tr>
             <th scope="row">{{project.id}}</th>
             <td>
-                <a href="/projects/project/{{project.id}}">{{project.title}}</a>
+                <a href="{% url 'project:detail' project.id %}">{{project.title}}</a>
             </td>
             <td>{{project.author.username}}</td>
             <td>{{project.created_date}}</td>
             <td>
-                <a href="/projects/update/{{project.id}}" class="btn btn-success">Güncelle</a>
+                <a href="{% url 'project:update' project.id %}" class="btn btn-success">Güncelle</a>
             </td>
             <td>
-                <a href="/projects/delete/{{project.id}}" class="btn btn-danger">Sil</a>
+                <a href="{% url 'project:delete' project.id %}" class="btn btn-danger">Sil</a>
             </td>
         </tr>
         {% endfor %}
