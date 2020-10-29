@@ -34,8 +34,9 @@
             {% endif %}
             <!-- Post Content -->
             <p class="lead">
-                {{project.content | safe}}
+                {{project.content | safe | truncatewords:50 }}
             </p>
+            <a href="/projects/project/{{project.id}}" class="btn btn-success">Devamını Oku</a>
             <hr>
         </div>
     </div>
